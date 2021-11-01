@@ -1,0 +1,31 @@
+body {
+  background: rgb(230, 235, 236);
+}
+
+.title {
+  text-align: center;
+}
+
+#login-form-holder {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+#login-form > input {
+  margin-bottom: 10px;
+  border: 0.3px solid lightblue;
+  border-radius: 3px;
+  outline: none;
+}
+
+#login-form > button {
+  margin-top: 20px;
+}
+
