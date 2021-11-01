@@ -10,7 +10,6 @@ def index():
   username = request.form.get("username")
   password = request.form.get("password")
   domain_name = request.form.get("domain-name")
-  domain = "portal.{}.org".format(domain_name)
   domain = domain_name.split("-")[1].strip()
   try:
     user = StudentVue(username, password, domain)
