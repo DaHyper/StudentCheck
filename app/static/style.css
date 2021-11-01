@@ -1,5 +1,5 @@
 body {
-  background: rgb(230, 235, 236);
+  background: rgb(230, 230, 230) !important;
 }
 
 .title {
@@ -28,4 +28,165 @@ body {
 #login-form > button {
   margin-top: 20px;
 }
+
+/* starting main */
+
+h2 {
+  text-align: center;
+}
+
+#top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: rgb(189, 224, 235);
+  height: 100px;
+}
+
+#top > a {
+  height: 25px;
+  margin-top: 10px;
+  text-decoration: none;
+  transition-property: all;
+  transition-duration: 125ms;
+  color: rgb(85, 84, 84);
+}
+
+#top > a:hover {
+  text-decoration: underline;
+  color: rgb(162, 162, 162);
+}
+
+#welcome {
+  margin-top: 10px;
+  margin-left: 30px;
+}
+
+#notifications {
+  margin-top: 10px;
+  margin-right: 50px;
+  width: 100px;
+}
+
+.bell {
+  background: inherit;
+  border: none;
+}
+
+#main {
+  margin-top: 20px;
+  margin-left: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#calendar {
+  margin-left: 30px;
+}
+
+@media screen and (max-width: 400px) {
+  #calendar {
+    margin-left: 0px;
+  }
+}
+
+#assignment-list {
+  min-height: 100px;
+  text-align: center;
+}
+
+#grades {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 300px;
+}
+
+.lesson {
+  margin-top: 20px;
+  width: 100%;
+  border: 3px solid rgb(116, 114, 114);
+  background: rgb(218, 217, 217);
+  font-size: 20px;
+}
+
+.lesson-name-bar {
+  text-align: center;
+  border-bottom: 0.5px dotted black;
+}
+
+.grade-bar {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.teacher, .grade, .meeting-day, .assignment {
+  color: rgb(61, 155, 181);
+}
+
+.grade-bar > .lesson-name {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.important {
+  font-size: 25px;
+}
+
+.lesson-name > .important {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+#notification-list {
+  margin-top: 10px;
+  min-height: 100px;
+  color: rgba(155, 155, 155, 0.699);
+  background: rgba(184, 184, 184, 0.2);
+  border: 0.3px solid lightgray;
+  width: 100px;
+}
+
+#notification-list > p {
+  margin: 5px;
+}
+
+.lowered {
+  color: rgb(233, 133, 115) !important;
+}
+
+.higher {
+  color: rgb(110, 227, 110) !important;
+}
+
+#daily-schedule {
+  margin-right: 20px;
+  width: 30%;
+}
+
+.schedule-lesson {
+  min-height: 50px;
+  text-align: center;
+  border: 0.5px solid black;
+  background: rgb(218, 217, 217);
+}
+
+.current-lesson {
+  box-shadow: 3px 3px black;
+  background: rgb(206, 92, 92);
+}
+
+.current-lesson > .meeting-day {
+  color: white;
+}
+
+.schedule-lesson-name {
+  display: block;
+}
+
 
