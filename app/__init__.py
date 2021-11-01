@@ -2,6 +2,7 @@ import os
 
 from flask import Flask
 
+from . import auth, sv
 
 def create_app(test_config=None):
     # create and configure the app
@@ -17,6 +18,9 @@ def create_app(test_config=None):
         # load the test config if passed in
         app.config.from_mapping(test_config)
 
+    app.register_blueprint(auth.bp)
+    app.register_blueprint(sv.bp)
+    
     return app
 
 # set FLASK_APP=app
