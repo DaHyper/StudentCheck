@@ -49,56 +49,63 @@
     </div>
     <div id="main">
       <div id="calendar">
-        <h2>Upcoming</h2>
-        <div id="assignment-list">
-          {% for date in next_week.keys() %}
-            <p class="important">{{ date }}</p>
-            {% for a in next_week[date] %}
-              {% if a == tommorow %}
-                <p class="assignment updated-name">{{ a }}</p>
-              {% else %}
-                <p class="assignment">{{ a }}</p>
-              {% endif %}
+        {% if proper_prediction %}
+          <h2 style="text-align: center;">Upcoming</h2>
+          <div id="assignment-list">
+            {% for date in next_week.keys() %}
+              <p class="important">{{ date }}</p>
+              {% for a in next_week[date] %}
+                {% if a == tommorow %}
+                  <p class="assignment updated-name">{{ a }}</p>
+                {% else %}
+                  <p class="assignment">{{ a }}</p>
+                {% endif %}
+              {% endfor %}
+              <hr />
             {% endfor %}
-            <hr />
-          {% endfor %}
-        </div>
-      </div>
-      <div id="grades">
-        <h2>Grades</h2>
-        {% for course in courses %}
-          <div class="lesson">
-            <div class="lesson-name-bar">
-              <p class="lesson-name">
-                <span class="important">{{ course['@Title'] }}</span>
-                <span class="teacher">{{ course['@Staff'] }}</span>
-              </p>
-            </div>
-            <div class="grade-bar">
-              <p class="lesson-name">
-                Grade:
-                <span class="important grade"
-                  >{{ course['Marks']['Mark']['@CalculatedScoreString'] }}
-                  {# {{ course['Marks']['Mark']['@CalculatedScoreRaw'] }} #}
-                  </span
-                >
-                max possible score {{ prediction[course["@Title"]]["max"] }}%
-                <br>
-                min possible score {{ prediction[course["@Title"]]["min"] }}%
-              </p>
-            </div>
           </div>
-        {% endfor %}
+        
+        </div>
+        <div id="grades">
+          <h2>Grades</h2>
+          {% for course in courses %}
+            <div class="lesson">
+              <div class="lesson-name-bar">
+                <p class="lesson-name">
+                  <span class="important">{{ course['@Title'] }}</span>
+                  <span class="teacher">{{ course['@Staff'] }}</span>
+                </p>
+              </div>
+              <div class="grade-bar">
+                <p class="lesson-name">
+                  Grade:
+                  <span class="important grade"
+                    >{{ course['Marks']['Mark']['@CalculatedScoreString'] }}
+                    {# {{ course['Marks']['Mark']['@CalculatedScoreRaw'] }} #}
+                    </span
+                  >
+                  max possible score {{ prediction[course["@Title"]]["max"] }}%
+                  <br>
+                  min possible score {{ prediction[course["@Title"]]["min"] }}%
+                </p>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div>
+            <h2>No Grades Available</h2>
+          </div>
+        {% endif %}
       </div>
       <div id="daily-schedule">
         <h2>Schedule</h2>
         {% for lesson in schedule %}
           <p class="schedule-lesson">
             <span class="schedule-lesson-name important">
-              {{ lesson["@CourseTitle"] }}</span
+              {{ lesson["@ClassName"] }}</span
             >
             <span class="meeting-day">
-              Meeting Days: {{ lesson["@MeetingDays"] }}
+              {#{{ lesson["@MeetingDays"] }}#} {{ lesson["@StartTime"] }}-{{ lesson["@EndTime"] }}
             </span>
           </p>
         {% endfor %}

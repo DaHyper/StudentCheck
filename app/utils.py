@@ -5,7 +5,6 @@ import time
 
 # the functions are written in the order that they are displayed on the webpage (assignments, grades, schedule)
 
-
 def get_current_day():
     today = datetime.datetime.now()
     return today
@@ -60,22 +59,34 @@ def get_assignments(user: StudentVue):
     # the -1 is the course number so -1 is the last lesson
 
     assignments = {}
-    # getting all the assignments and attaching them to their class
+    # getting all the assignments and attaching them to their lesson name
     for index in range(0, len(courses)):
         key = courses[index]["@Title"]
-        assignments[key] = user.get_gradebook(
-        )['Gradebook']['Courses']['Course'][index]["Marks"]["Mark"]["Assignments"]["Assignment"]
+        
+        try:
+            assignments[key] = user.get_gradebook(
+            )['Gradebook']['Courses']['Course'][index]["Marks"]["Mark"]["Assignments"]["Assignment"]
+        except TypeError:
+            assignments[key] = 0
+
     return assignments
 
 
 def get_weighted_assignments(user: StudentVue):
     assignments = get_assignments(user)
     graded_assignments = {}
-    for lesson_name in assignments.keys():
+    for lesson_name in assignments:
         lesson_grades_assignments = []
-        for a in assignments[lesson_name]:
-            if "summative" in a["@Type"].lower():
-                lesson_grades_assignments.append(a)
+        try:
+            for a in assignments[lesson_name]:
+                if "not graded" not in a["@Note"].lower():
+                    lesson_grades_assignments.append(a)
+        except ValueError:
+            return 0
+
+        except TypeError:
+            return 0
+        
         graded_assignments[lesson_name] = lesson_grades_assignments
 
     return graded_assignments
@@ -83,38 +94,41 @@ def get_weighted_assignments(user: StudentVue):
 
 def grade_prediction(user: StudentVue):
     assignments = get_weighted_assignments(user)
-    full_scores = {}
+    if assignments != 0:
+        full_scores = {}
 
-    for key in assignments.keys():
-        earned_score = 0
-        max_score = 0
-        min_score = 0
-        for a in assignments[key]:
-            a = a["@Points"]
-            # this is if it is not graded
-            if '/' not in a:
-                earned_points = total_points = float(a.split()[0])
-                min_points = 0
-            else:
-                earned_points, total_points = a.split('/')
-                earned_points = min_points = float(earned_points)
-                total_points = float(total_points)
+        for key in assignments:
+            earned_score = 0
+            max_score = 0
+            min_score = 0
+            for a in assignments[key]:
+                a = a["@Points"]
+                # this is if it is not graded
+                if '/' not in a:
+                    earned_points = total_points = float(a.split()[0])
+                    min_points = 0
+                else:
+                    earned_points, total_points = a.split('/')
+                    earned_points = min_points = float(earned_points)
+                    total_points = float(total_points)
 
-            earned_score += earned_points
-            max_score += total_points
-            min_score += min_points
-            max_percent = round(earned_score / max_score * 100)
-            min_percent = round(min_score / max_score * 100)
-            percent_dict = {"max": max_percent, "min": min_percent}
-            full_scores[key] = percent_dict
+                earned_score += earned_points
+                max_score += total_points
+                min_score += min_points
+                max_percent = round(earned_score / max_score * 100)
+                min_percent = round(min_score / max_score * 100)
+                percent_dict = {"max": max_percent, "min": min_percent}
+                full_scores[key] = percent_dict
 
-    return full_scores
+        return full_scores
+    else:
+        return 0
 
 # starting the schedule
 
 
 def get_today_schedule(user: StudentVue):
-    return user.get_schedule()["StudentClassSchedule"]["TodayScheduleInfoData"]["SchoolInfos"]
+    return user.get_schedule()["StudentClassSchedule"]["TodayScheduleInfoData"]["SchoolInfos"]["SchoolInfo"]["Classes"]["ClassInfo"]
 
 
 def is_holiday(user: StudentVue):
@@ -127,7 +141,7 @@ def is_holiday(user: StudentVue):
 def get_valid_schedule(user: StudentVue):
     today_holiday = is_holiday(user)
     if not today_holiday:
-        schedule = get_today_schedule()
+        schedule = get_today_schedule(user)
     else:
         schedule = user.get_schedule(
         )["StudentClassSchedule"]["ClassLists"]["ClassListing"]

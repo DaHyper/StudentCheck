@@ -36,6 +36,7 @@ def index():
     schedule = get_valid_schedule(user)
 
     prediction = grade_prediction(user)
+    proper_prediction = prediction != 0
 
   except AttributeError:
     return redirect(url_for("auth.login"))
@@ -47,5 +48,6 @@ def index():
                         next_week=next_week,
                         schedule=schedule,
                         prediction=prediction,
+                        proper_prediction=proper_prediction,
                         tommorow=tommorow)
 
