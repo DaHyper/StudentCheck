@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from studentvue import StudentVue
 
-from .utils import get_courses, get_upcoming_assignments, get_valid_schedule, grade_prediction
+from .utils import get_courses, get_upcoming_assignments, get_valid_schedule, grade_prediction, get_current_lesson
 
 import datetime
 
@@ -23,7 +23,6 @@ def index():
   try:
     df = pd.read_csv("app/schools.csv")
     schools = dict(zip(df["SchoolName"], df["DomainName"]))
-    print(schools)
     username = request.form.get("username")
     password = request.form.get("password")
     domain_name = request.form.get("domain-name")
@@ -44,6 +43,8 @@ def index():
     prediction = grade_prediction(user)
     proper_prediction = prediction != 0
 
+    current_lesson = get_current_lesson(user)
+
   except AttributeError:
     return redirect(url_for("auth.login"))
   except KeyError:
@@ -57,5 +58,6 @@ def index():
                         schedule=schedule,
                         prediction=prediction,
                         proper_prediction=proper_prediction,
-                        tommorow=tommorow)
+                        tommorow=tommorow,
+                        current_lesson=current_lesson)
 

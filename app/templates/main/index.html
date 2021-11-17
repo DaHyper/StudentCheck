@@ -100,14 +100,25 @@
       <div id="daily-schedule">
         <h2>Schedule</h2>
         {% for lesson in schedule %}
-          <p class="schedule-lesson">
-            <span class="schedule-lesson-name important">
-              {{ lesson["@ClassName"] }}</span
-            >
-            <span class="meeting-day">
-              {#{{ lesson["@MeetingDays"] }}#} {{ lesson["@StartTime"] }}-{{ lesson["@EndTime"] }}
-            </span>
-          </p>
+          {% if lesson == current_lesson %}
+            <p class="schedule-lesson current-lesson">
+              <span class="schedule-lesson-name important">
+                {{ lesson["@ClassName"] }}</span
+              >
+              <span class="meeting-day">
+                {#{{ lesson["@MeetingDays"] }}#} {{ lesson["@StartTime"] }}-{{ lesson["@EndTime"] }}
+              </span>
+            </p>
+          {% else %}
+              <p class="schedule-lesson">
+              <span class="schedule-lesson-name important">
+                {{ lesson["@ClassName"] }}</span
+              >
+              <span class="meeting-day">
+                {#{{ lesson["@MeetingDays"] }}#} {{ lesson["@StartTime"] }}-{{ lesson["@EndTime"] }}
+              </span>
+            </p>
+          {% endif %}
         {% endfor %}
       </div>
     </div>

@@ -2,6 +2,7 @@ from studentvue import StudentVue
 
 import datetime
 import time
+import pytz
 
 # the functions are written in the order that they are displayed on the webpage (assignments, grades, schedule)
 
@@ -79,7 +80,7 @@ def get_weighted_assignments(user: StudentVue):
         lesson_grades_assignments = []
         try:
             for a in assignments[lesson_name]:
-                if "not graded" not in a["@Note"].lower():
+                if "not for grading" not in a["@Note"].lower():
                     lesson_grades_assignments.append(a)
         except ValueError:
             return 0
@@ -96,7 +97,7 @@ def grade_prediction(user: StudentVue):
     assignments = get_weighted_assignments(user)
     if assignments != 0:
         full_scores = {}
-
+        
         for key in assignments:
             earned_score = 0
             max_score = 0
@@ -151,5 +152,55 @@ def get_valid_schedule(user: StudentVue):
 def get_current_lesson(user: StudentVue):
     if not is_holiday(user):
         schedule = get_valid_schedule(user)
+
+        tz = pytz.timezone("America/New_York")
+        current_time = datetime.datetime.now(tz).time()
+
+        for lesson in schedule:
+          start_time_str = lesson["@StartTime"]
+          end_time_str = lesson["@EndTime"]
+          start_in_morning = "am" in start_time_str.lower()
+          end_in_morning = "am" in end_time_str.lower()
+
+          start_time_str = start_time_str[0:-2]
+          end_time_str = end_time_str[0:-2]
+
+          start_array = start_time_str.split(":")
+          end_array = end_time_str.split(":")
+          
+          original_start_hour = int(start_array[0]) 
+          if start_in_morning:
+            if original_start_hour == 12:
+              start_hour = 0
+            else:
+              start_hour = original_start_hour
+          else:
+            if original_start_hour == 12:
+              start_hour = 12
+            else:
+              start_hour = original_start_hour + 12
+          
+
+          original_end_hour = int(end_array[0])
+          if end_in_morning:
+            if original_end_hour == 12:
+              end_hour = 0
+            else:
+              end_hour = original_end_hour
+          else:
+            if original_end_hour == 12:
+              end_hour = 12
+            else:
+              end_hour = original_end_hour + 12
+          
+          
+          start_minute = int(start_array[1])
+          end_minute = int(end_array[1])
+          start_time = datetime.time(hour=start_hour, minute=start_minute)
+          end_time = datetime.time(hour=end_hour, minute=end_minute)
+          
+          if start_time <= current_time <= end_time:
+            return lesson
+
     else:
         return None
