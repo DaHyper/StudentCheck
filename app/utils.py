@@ -37,7 +37,6 @@ def get_upcoming_assignments(user: StudentVue):
     assignments = user.get_calendar(
     )["CalendarListing"]["EventLists"]["EventList"]
     dates_dict = {}
-    dates_list = []
     for next_date in dates_next_week:
         dates_dict[next_date] = []
         for a in assignments:
@@ -68,7 +67,7 @@ def get_assignments(user: StudentVue):
             assignments[key] = user.get_gradebook(
             )['Gradebook']['Courses']['Course'][index]["Marks"]["Mark"]["Assignments"]["Assignment"]
         except TypeError:
-            assignments[key] = 0
+            assignments[key] = "N/A"
 
     return assignments
 
@@ -78,31 +77,26 @@ def get_weighted_assignments(user: StudentVue):
     graded_assignments = {}
     for lesson_name in assignments:
         lesson_grades_assignments = []
-        try:
+        if assignments[lesson_name] != "N/A":
             for a in assignments[lesson_name]:
-                if "not for grading" not in a["@Note"].lower():
-                    lesson_grades_assignments.append(a)
-        except ValueError:
-            return 0
-
-        except TypeError:
-            return 0
-        
-        graded_assignments[lesson_name] = lesson_grades_assignments
-
+                    if "not for grading" not in a["@Notes"].lower():
+                        lesson_grades_assignments.append(a)
+        else:
+            graded_assignments[lesson_name] = "N/A"
+    print(graded_assignments)
     return graded_assignments
 
 
 def grade_prediction(user: StudentVue):
     assignments = get_weighted_assignments(user)
-    if assignments != 0:
-        full_scores = {}
+    full_scores = {}
         
-        for key in assignments:
-            earned_score = 0
-            max_score = 0
-            min_score = 0
-            for a in assignments[key]:
+    for key in assignments:
+        earned_score = 0
+        max_score = 0
+        min_score = 0
+        for a in assignments[key]:
+            try:
                 a = a["@Points"]
                 # this is if it is not graded
                 if '/' not in a:
@@ -112,7 +106,6 @@ def grade_prediction(user: StudentVue):
                     earned_points, total_points = a.split('/')
                     earned_points = min_points = float(earned_points)
                     total_points = float(total_points)
-
                 earned_score += earned_points
                 max_score += total_points
                 min_score += min_points
@@ -120,10 +113,12 @@ def grade_prediction(user: StudentVue):
                 min_percent = round(min_score / max_score * 100)
                 percent_dict = {"max": max_percent, "min": min_percent}
                 full_scores[key] = percent_dict
+            except TypeError:
+                full_scores[key] = "N/A"
+                percent_dict = {"max":"N/A", "min":"N/A"}
 
-        return full_scores
-    else:
-        return 0
+    return full_scores
+
 
 # starting the schedule
 
