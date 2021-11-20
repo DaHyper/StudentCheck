@@ -1,3 +1,4 @@
+from re import L
 from studentvue import StudentVue
 
 import datetime
@@ -124,26 +125,22 @@ def grade_prediction(user: StudentVue):
 
 # starting the schedule
 
-
-def get_today_schedule(user: StudentVue):
-    return user.get_schedule()["StudentClassSchedule"]["TodayScheduleInfoData"]["SchoolInfos"]["SchoolInfo"]["Classes"]["ClassInfo"]
-
+def get_valid_schedule(user: StudentVue):
+    schedule = None
+    today =  user.get_schedule()["StudentClassSchedule"]["TodayScheduleInfoData"]["SchoolInfos"]
+    # if there is no school today
+    if today == {}:
+        schedule = user.get_schedule()["StudentClassSchedule"]["ClassLists"]["ClassListing"]
+    else:
+        schedule = user.get_schedule()["StudentClassSchedule"]["TodayScheduleInfoData"]["SchoolInfos"]["SchoolInfo"]["Classes"]["ClassInfo"]
+    for course in schedule:
+        print(course["@CourseTitle"])
+    return schedule
 
 def is_holiday(user: StudentVue):
-    today_schedule = get_today_schedule(user)
-    return today_schedule == {}
-
-# this function checks if it is a holiday and if it is then it return the user's whole schedule
-
-
-def get_valid_schedule(user: StudentVue):
-    today_holiday = is_holiday(user)
-    if not today_holiday:
-        schedule = get_today_schedule(user)
-    else:
-        schedule = user.get_schedule(
-        )["StudentClassSchedule"]["ClassLists"]["ClassListing"]
-    return schedule
+    valid_schedule = get_valid_schedule(user)
+    return valid_schedule == user.get_schedule()["StudentClassSchedule"]["ClassLists"]["ClassListing"]
+        
 
 # finish when school starts again because I can't get it right now
 def get_current_lesson(user: StudentVue):

@@ -44,12 +44,8 @@ def index():
     proper_prediction = prediction != 0
 
     current_lesson = get_current_lesson(user)
-
-  except AttributeError:
-    flash("an error")
-    return redirect(url_for("auth.login"))
+    
   except KeyError:
-    flash("key error")
     return redirect(url_for("auth.login"))
 
   return render_template("main/index.html",
