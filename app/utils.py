@@ -71,7 +71,7 @@ def get_assignments(user: StudentVue):
             assignments[course_name] = course_assignments
         except KeyError:
             assignments[course_name] = "N/A"
-    print(assignments)
+
     return assignments
 
 
@@ -92,14 +92,15 @@ def get_weighted_assignments(user: StudentVue):
 
 def grade_prediction(user: StudentVue):
     assignments = get_weighted_assignments(user)
+
     full_scores = {}
-        
+
     for key in assignments:
         earned_score = 0
         max_score = 0
         min_score = 0
-        for a in assignments[key]:
-            try:
+        if assignments[key] != "N/A":
+            for a in assignments[key]:
                 a = a["@Points"]
                 # this is if it is not graded
                 if '/' not in a:
@@ -116,9 +117,13 @@ def grade_prediction(user: StudentVue):
                 min_percent = round(min_score / max_score * 100)
                 percent_dict = {"max": max_percent, "min": min_percent}
                 full_scores[key] = percent_dict
-            except TypeError:
-                full_scores[key] = "N/A"
-                percent_dict = {"max":"N/A", "min":"N/A"}
+        else:
+            courses = get_courses(user)
+            for course in courses:
+                key = course["@Title"]
+                value = course["Marks"]["Mark"][0]["@CalculatedScoreRaw"]
+                percent_dict = {"max": value, "min": value}
+                full_scores[key] = percent_dict
 
     return full_scores
 
@@ -133,8 +138,6 @@ def get_valid_schedule(user: StudentVue):
         schedule = user.get_schedule()["StudentClassSchedule"]["ClassLists"]["ClassListing"]
     else:
         schedule = user.get_schedule()["StudentClassSchedule"]["TodayScheduleInfoData"]["SchoolInfos"]["SchoolInfo"]["Classes"]["ClassInfo"]
-    for course in schedule:
-        print(course["@CourseTitle"])
     return schedule
 
 def is_holiday(user: StudentVue):
