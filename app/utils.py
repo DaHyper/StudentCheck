@@ -60,15 +60,17 @@ def get_assignments(user: StudentVue):
 
     assignments = {}
     # getting all the assignments and attaching them to their lesson name
-    for index in range(0, len(courses)):
-        key = courses[index]["@Title"]
-        
-        try:
-            assignments[key] = user.get_gradebook(
-            )['Gradebook']['Courses']['Course'][index]["Marks"]["Mark"]["Assignments"]["Assignment"]
-        except TypeError:
-            assignments[key] = "N/A"
 
+    for course in courses:
+        course_name = course["@Title"]
+        try:
+            course_assignments = []
+            for a in course["Marks"]['Mark']:
+                course_assignments.append(a["Assignments"]["Assignment"])
+            assignments[course_name] = course_assignments
+        except KeyError:
+            assignments[course_name] = "N/A"
+    print(assignments)
     return assignments
 
 
@@ -83,7 +85,7 @@ def get_weighted_assignments(user: StudentVue):
                         lesson_grades_assignments.append(a)
         else:
             graded_assignments[lesson_name] = "N/A"
-    print(graded_assignments)
+    #print(graded_assignments)
     return graded_assignments
 
 

@@ -81,10 +81,10 @@
                   Grade:
                   <span class="important grade"
                     >
-                    {{ course['Marks']['Mark']['@CalculatedScoreString'] }}
+                    {{ course['Marks']['Mark'][0]['@CalculatedScoreString'] }}
                     </span
                   >
-                  max possible score {{ prediction[course["@Title"]]["max"] }}%
+                  max possible score {{ prediction[course["@Title"]]["max"] }}% 
                   <br>
                   min possible score {{ prediction[course["@Title"]]["min"] }}%
                 </p>
