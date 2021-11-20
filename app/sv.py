@@ -42,7 +42,6 @@ def index():
         schedule = get_valid_schedule(user)
 
         prediction = grade_prediction(user)
-        proper_prediction = prediction != 0
 
         current_lesson = get_current_lesson(user)
 
@@ -56,6 +55,5 @@ def index():
                            next_week=next_week,
                            schedule=schedule,
                            prediction=prediction,
-                           proper_prediction=proper_prediction,
                            tommorow=tommorow,
                            current_lesson=current_lesson)
