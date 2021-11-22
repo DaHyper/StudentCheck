@@ -98,7 +98,9 @@
           {% if lesson == current_lesson %}
             <p class="schedule-lesson current-lesson">
               <span class="schedule-lesson-name important">
-                {{ lesson["@CourseTitle"] }}</span
+                {{ lesson["@ClassName"] }}
+                {{ lesson["@CourseTitle"] }}</span                
+                </span
               >
               <span class="meeting-day">
                 {#{{ lesson["@MeetingDays"] }}#} {{ lesson["@StartTime"] }}-{{ lesson["@EndTime"] }}
@@ -107,10 +109,19 @@
           {% else %}
               <p class="schedule-lesson">
               <span class="schedule-lesson-name important">
-                {{ lesson["@CourseTitle"] }}</span
-              >
+                {% if today_holiday %}
+                  {{ lesson["@CourseTitle"] }}</span>
+                  <span class="meeting-day">
+                    Meeting Days: {{ lesson["@MeetingDays"] }}                    
+                  </span>
+                {% else %}
+                  {{ lesson["@ClassName"] }}</span>
+                  <span class="meeting-day">
+                    {{ lesson["@StartTime"] }}-{{ lesson["@EndTime"] }}
+                  </span>
+                {% endif %}
+                
               <span class="meeting-day">
-                Meeting Days: {{ lesson["@MeetingDays"] }}
               </span>
             </p>
           {% endif %}
