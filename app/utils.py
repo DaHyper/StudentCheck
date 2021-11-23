@@ -91,7 +91,6 @@ def get_weighted_assignments(user: StudentVue):
                     graded_assignments[lesson_name] = lesson_grades_assignments
         else:
             graded_assignments[lesson_name] = "N/A"
-    print(graded_assignments)
     return graded_assignments
 
 
