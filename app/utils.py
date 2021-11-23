@@ -84,13 +84,14 @@ def get_weighted_assignments(user: StudentVue):
     for lesson_name in assignments:
         lesson_grades_assignments = []
         if assignments[lesson_name] != "N/A":
-            for a in assignments[lesson_name]:
-                    print(lesson_name)
-                    if "not for grading" not in a[0]["@Notes"].lower():
-                        lesson_grades_assignments.append(a)
+            for i in assignments[lesson_name]:
+                    for a in i:
+                      if "not for grading" not in a["@Notes"].lower():
+                          lesson_grades_assignments.append(a)
+                    graded_assignments[lesson_name] = lesson_grades_assignments
         else:
             graded_assignments[lesson_name] = "N/A"
-    #print(graded_assignments)
+    print(graded_assignments)
     return graded_assignments
 
 
@@ -117,8 +118,11 @@ def grade_prediction(user: StudentVue):
                 earned_score += earned_points
                 max_score += total_points
                 min_score += min_points
-                max_percent = round(earned_score / max_score * 100)
-                min_percent = round(min_score / max_score * 100)
+                try:
+                  max_percent = round(earned_score / max_score * 100)
+                  min_percent = round(min_score / max_score * 100)
+                except ZeroDivisionError:
+                  max_percent = min_percent = 0
                 percent_dict = {"max": max_percent, "min": min_percent}
                 full_scores[key] = percent_dict
         else:
