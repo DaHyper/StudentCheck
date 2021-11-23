@@ -8,6 +8,7 @@
 
   /* dark purple: #6200EE */
   /* light purple: #D500F9 */
+  /* teal: #03DAC6 */
   --dark-top:#6200EE;
   --dark-background: rgb(18, 18, 18);
   --dark-accent: #03DAC6;
@@ -123,17 +124,26 @@ h2 {
   text-align: center;
 }
 
+#grades-holder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 #grades {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  width: 300px;
+  /* 300px */
+  width: 100%;
+  flex-flow: row wrap;
 }
 
 .lesson {
   margin-top: 20px;
-  width: 100%;
+  margin-right: 20px;
+  width: 300px;
   border: 3px solid rgb(116, 114, 114);
   font-size: 20px;
 }

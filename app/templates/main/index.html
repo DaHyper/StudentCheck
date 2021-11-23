@@ -74,33 +74,35 @@
           </div>
         
         </div>
-        <div id="grades">
+        <div id="grades-holder" style="width: 50%;">
           <h2>Grades</h2>
-          {% for course in courses %}
-            <div class="lesson card">
-              <div class="lesson-name-bar">
-                <p class="lesson-name">
-                  <span class="important">{{ course['@Title'] }}</span>
-                  <span class="teacher accent">{{ course['@Staff'] }}</span>
-                </p>
-              </div>
-              <div class="grade-bar">
-                <p class="lesson-name">
-                  Grade:
-                  <span class="important grade accent"
+          <div id="grades">
+            {% for course in courses %}
+              <div class="lesson card">
+                <div class="lesson-name-bar">
+                  <p class="lesson-name">
+                    <span class="important">{{ course['@Title'] }}</span>
+                    <span class="teacher accent">{{ course['@Staff'] }}</span>
+                  </p>
+                </div>
+                <div class="grade-bar">
+                  <p class="lesson-name">
+                    Grade:
+                    <span class="important grade accent"
+                      >
+                      {{ course['Marks']['Mark'][0]['@CalculatedScoreString'] }}
+                      <br>
+                      {{ course['Marks']['Mark'][0]["@CalculatedScoreRaw"] }}%
+                      </span
                     >
-                    {{ course['Marks']['Mark'][0]['@CalculatedScoreString'] }}
+                    max possible score {{ prediction[course["@Title"]]["max"] }}% 
                     <br>
-                    {{ course['Marks']['Mark'][0]["@CalculatedScoreRaw"] }}%
-                    </span
-                  >
-                  max possible score {{ prediction[course["@Title"]]["max"] }}% 
-                  <br>
-                  min possible score {{ prediction[course["@Title"]]["min"] }}%
-                </p>
+                    min possible score {{ prediction[course["@Title"]]["min"] }}%
+                  </p>
+                </div>
               </div>
-            </div>
-          {% endfor %}
+            {% endfor %}
+          </div>
       </div>
       <div id="daily-schedule">
         <h2>Schedule</h2>
