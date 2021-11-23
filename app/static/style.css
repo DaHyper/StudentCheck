@@ -11,18 +11,24 @@
 
   --top: var(--light-top);
   --accent: var(--light-accent);
-  --card: var(--dark-card);
+  --card: var(--light-card);
 }
 
 
 
 .light {
   background: var(--light-background) !important;
+  --top: var(--light-top);
+  --accent: var(--light-accent);
+  --card: var(--light-card);
 }
 
 .dark {
   background: var(--dark-background) !important;
   color: white;
+  --top: var(--dark-top);
+  --accent: var(--dark-accent);
+  --card: var(--dark-card);
 }
 
 body {
@@ -135,7 +141,7 @@ h2 {
   margin-top: 20px;
   width: 100%;
   border: 3px solid rgb(116, 114, 114);
-  background: var(--card) !important;
+  background: var(--card);
   font-size: 20px;
 }
 
@@ -208,7 +214,7 @@ h2 {
   min-height: 50px;
   text-align: center;
   border: 0.5px solid black;
-  background: var(--card) !important;
+  background: var(--card);
   /* background: rgb(218, 217, 217); */
 }
 
