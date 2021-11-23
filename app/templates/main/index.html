@@ -19,7 +19,7 @@
     <title>Dashboard</title>
   </head>
 
-  <body class="light">
+  <body>
     <div id="top">
       <h1 id="welcome">{{ username }}</h1>
       {# <a href="#">Assignments</a>
@@ -49,7 +49,7 @@
       </div>
     </div>
     <div id="main">
-      <div id="calendar">
+      <div id="calendar" class="card">
           <h2 style="text-align: center;">Upcoming</h2>
           <div id="assignment-list">
             {% for date in next_week.keys() %}
@@ -100,7 +100,7 @@
         <h2>Schedule</h2>
         {% for lesson in schedule %}
           {% if lesson == current_lesson %}
-            <p class="schedule-lesson current-lesson card">
+            <p class="schedule-lesson current-lesson">
               <span class="schedule-lesson-name important">
                 {{ lesson["@ClassName"] }}
                 {{ lesson["@CourseTitle"] }}</span>

@@ -12,7 +12,7 @@ for (let i = 0; i < important.length; i++) {
   document.getElementById("notification-list").innerHTML += "<hr>" + important[i].textContent;
 }
 
-// chaning themes
+// changing themes
 
 const lightButton = document.getElementById("light-btn");
 const darkButton = document.getElementById("dark-btn");
@@ -22,7 +22,7 @@ if (theme) {
   document.body.classList.add(theme);
 } else {
   document.body.classList.add("light");
-} 
+}
 
 lightButton.onclick = () => {
   document.body.classList.replace("dark", "light");
@@ -32,10 +32,5 @@ lightButton.onclick = () => {
 darkButton.onclick = () => {
   document.body.classList.replace("light", "dark");
   localStorage.setItem("theme", "dark");
-  document.documentElement.style.cssText = `
-  --accent: var(--dark-accent);
-  --top: var(--dark-top);
-  --card: var(--dark-card);
-  `;
 }
 

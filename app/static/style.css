@@ -1,17 +1,20 @@
 :root {
-  --light-top: rgb(189, 224, 235);;
+  --light-top: rgb(61, 155, 181);
   --light-background: rgb(230, 230, 230);
-  --light-accent: rgb(61, 155, 181);
-  --light-card: rgb(218, 217, 217);
+  --light-accent: var(--light-top);
+  --light-card: #e0e0e0;
+  --light-current-lesson: #e91e63;
 
-  --dark-top: rgb(76, 146, 97);
+  --dark-top: #D500F9;
   --dark-background: rgb(18, 18, 18);
-  --dark-accent: #6200EE;
+  --dark-accent: var(--dark-top);
   --dark-card: rgba(255, 255, 255, 0.1);
+  --dark-current-lesson: #03DAC6;
 
   --top: var(--light-top);
   --accent: var(--light-accent);
   --card: var(--light-card);
+  --current-lesson: var(--dark-current-lesson);
 }
 
 .light {
@@ -19,6 +22,7 @@
   --top: var(--light-top);
   --accent: var(--light-accent);
   --card: var(--light-card);
+  --current-lesson: var(--light-current-lesson);
 }
 
 .dark {
@@ -27,6 +31,7 @@
   --top: var(--dark-top);
   --accent: var(--dark-accent);
   --card: var(--dark-card);
+  --current-lesson: var(--dark-current-lesson);
 }
 
 body {
@@ -186,14 +191,6 @@ h2 {
   margin: 5px;
 }
 
-/* .lowered {
-  color: rgb(233, 133, 115) !important;
-}
-
-.higher {
-  color: rgb(110, 227, 110) !important;
-} */
-
 #daily-schedule {
   margin-right: 20px;
   width: 30%;
@@ -205,9 +202,14 @@ h2 {
   border: 0.5px solid black;
 }
 
+.card {
+  background: var(--card) !important;
+}
+
 .current-lesson {
   box-shadow: 3px 3px black;
-  background: rgb(206, 92, 92);
+  background: var(--current-lesson);
+  color: black;
 }
 
 .current-lesson > .meeting-day {
@@ -218,6 +220,3 @@ h2 {
   display: block;
 }
 
-.card {
-  background: var(--card) !important;
-}
