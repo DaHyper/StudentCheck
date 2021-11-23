@@ -21,7 +21,11 @@
 
   <body>
     <div id="top">
-      <h1 id="welcome">{{ username }}</h1>
+      {% if current_lesson is none %}
+        <h1 id="welcome">{{ username }}</h1>
+      {% else %}
+        <h1 id="welcome" class="card">{{ current_lesson["@ClassName"] }}</h1>
+      {% endif %}      
       {# <a href="#">Assignments</a>
       <a href="#">Grades</a> #}
       <div id="themes">

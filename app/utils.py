@@ -159,7 +159,6 @@ def get_current_lesson(user: StudentVue):
 
         tz = pytz.timezone("America/New_York")
         current_time = datetime.datetime.now(tz).time()
-
         for lesson in schedule:
           start_time_str = lesson["@StartTime"]
           end_time_str = lesson["@EndTime"]
