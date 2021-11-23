@@ -20,7 +20,7 @@ def index():
     schedule = None
     prediction = None
 
-    tommorow = (datetime.date.today() + datetime.timedelta(days=1)).strftime("%m/%d/%Y")
+    tommorow = (datetime.date.today() + datetime.timedelta(days=1))
     try:
         df = pd.read_csv("app/schools.csv")
         schools = dict(zip(df["SchoolName"], df["DomainName"]))
@@ -39,12 +39,24 @@ def index():
         courses = get_courses(user)
 
         next_week = get_upcoming_assignments(user)
+        
+        days_dict = {
+          0:"Monday",
+          1:"Tuesday",
+          2:"Wednesday",
+          3:"Thursday",
+          4:"Friday",
+          5:"Saturday",
+          6:"Sunday"
+        }
+
         schedule = get_valid_schedule(user)
 
         prediction = grade_prediction(user)
 
         current_lesson = get_current_lesson(user)
         today_holiday = is_holiday(user)
+        
 
     except KeyError:
      return redirect(url_for("auth.login"))
@@ -55,6 +67,7 @@ def index():
                            courses=courses,
                            next_week=next_week,
                            schedule=schedule,
+                           days_dict=days_dict,
                            prediction=prediction,
                            tommorow=tommorow,
                            current_lesson=current_lesson,

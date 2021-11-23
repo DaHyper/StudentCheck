@@ -24,10 +24,10 @@ def get_days_next_week():
     startdate = time.asctime(time.strptime(
         f'{current_year} {WEEK} 0', '%Y %W %w'))
     startdate = datetime.datetime.strptime(startdate, '%a %b %d %H:%M:%S %Y')
-    dates = [today.strftime('%m/%d/%Y')]
+    dates = [today]
     for i in range(0, 6):
         day = startdate + datetime.timedelta(days=i)
-        dates.append(day.strftime('%m/%d/%Y'))
+        dates.append(day)
     return dates
 
 
@@ -41,7 +41,7 @@ def get_upcoming_assignments(user: StudentVue):
     for next_date in dates_next_week:
         dates_dict[next_date] = []
         for a in assignments:
-            if a["@Date"] == next_date:
+            if a["@Date"] == next_date.strftime('%m/%d/%Y'):
                 dates_dict[next_date].append(a["@Title"])
     return dates_dict
 

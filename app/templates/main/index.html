@@ -61,7 +61,7 @@
           <h2 style="text-align: center;">Upcoming</h2>
           <div id="assignment-list">
             {% for date in next_week.keys() %}
-              <p class="important">{{ date }}</p>
+              <p class="important">{{ days_dict[date.weekday()] }}, {{ date.strftime('%m/%d/%Y') }}</p>
               {% for a in next_week[date] %}
                 {% if a == tommorow %}
                   <p class="accent assignment updated-name">{{ a }}</p>
@@ -136,6 +136,5 @@
         {% endfor %}
       </div>
     </div>
-
   </body>
 </html>
