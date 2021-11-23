@@ -2,23 +2,27 @@
   --light-top: rgb(189, 224, 235);;
   --light-background: rgb(230, 230, 230);
   --light-accent: rgb(61, 155, 181);
+  --light-card: rgb(218, 217, 217);
 
-  --dark-top: rgb(65, 241, 118);
-  --dark-background: rgb(110, 110, 110);
-  --dark-accent: rgb(49, 175, 56);
+  --dark-top: rgb(76, 146, 97);
+  --dark-background: rgb(18, 18, 18);
+  --dark-accent: #6200EE;
+  --dark-card: rgba(255, 255, 255, 0.1);
 
   --top: var(--light-top);
   --accent: var(--light-accent);
+  --card: var(--dark-card);
 }
 
 
 
 .light {
-  background: var(--light-background) !important;  
+  background: var(--light-background) !important;
 }
 
 .dark {
   background: var(--dark-background) !important;
+  color: white;
 }
 
 body {
@@ -59,7 +63,7 @@ h2 {
 }
 
 #top {
-  background: var(--light-top);
+  background: var(--top);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -131,7 +135,7 @@ h2 {
   margin-top: 20px;
   width: 100%;
   border: 3px solid rgb(116, 114, 114);
-  background: rgb(218, 217, 217);
+  background: var(--card) !important;
   font-size: 20px;
 }
 
@@ -204,7 +208,8 @@ h2 {
   min-height: 50px;
   text-align: center;
   border: 0.5px solid black;
-  background: rgb(218, 217, 217);
+  background: var(--card) !important;
+  /* background: rgb(218, 217, 217); */
 }
 
 .current-lesson {
@@ -219,5 +224,4 @@ h2 {
 .schedule-lesson-name {
   display: block;
 }
-
 

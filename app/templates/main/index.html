@@ -71,7 +71,7 @@
         <div id="grades">
           <h2>Grades</h2>
           {% for course in courses %}
-            <div class="lesson">
+            <div class="lesson card">
               <div class="lesson-name-bar">
                 <p class="lesson-name">
                   <span class="important">{{ course['@Title'] }}</span>
@@ -100,7 +100,7 @@
         <h2>Schedule</h2>
         {% for lesson in schedule %}
           {% if lesson == current_lesson %}
-            <p class="schedule-lesson current-lesson">
+            <p class="schedule-lesson current-lesson card">
               <span class="schedule-lesson-name important">
                 {{ lesson["@ClassName"] }}
                 {{ lesson["@CourseTitle"] }}</span>
@@ -109,22 +109,22 @@
               </span>
             </p>
           {% else %}
-              <p class="schedule-lesson">
-              <span class="schedule-lesson-name important">
-                {% if today_holiday %}
-                  {{ lesson["@CourseTitle"] }}</span>
-                  <span class="meeting-day accent">
-                    Meeting Days: {{ lesson["@MeetingDays"] }}                    
-                  </span>
-                {% else %}
-                  {{ lesson["@ClassName"] }}</span>
-                  <span class="meeting-day accent">
-                    {{ lesson["@StartTime"] }}-{{ lesson["@EndTime"] }}
-                  </span>
-                {% endif %}
-                
-              <span class="meeting-day">
-              </span>
+              <p class="schedule-lesson card" style="background: var(--card);">
+                <span class="schedule-lesson-name important">
+                  {% if today_holiday %}
+                    {{ lesson["@CourseTitle"] }}</span>
+                    <span class="meeting-day accent">
+                      Meeting Days: {{ lesson["@MeetingDays"] }}                    
+                    </span>
+                  {% else %}
+                    {{ lesson["@ClassName"] }}</span>
+                    <span class="meeting-day accent">
+                      {{ lesson["@StartTime"] }}-{{ lesson["@EndTime"] }}
+                    </span>
+                  {% endif %}
+                  
+                <span class="meeting-day">
+                </span>
             </p>
           {% endif %}
         {% endfor %}

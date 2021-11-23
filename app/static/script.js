@@ -21,21 +21,36 @@ const theme = localStorage.getItem("theme");
 if (theme) {
   document.body.classList.add(theme);
   if (theme == "dark") {
-    document.documentElement.style.cssText = `--accent: var(--dark-accent);`;
+    document.documentElement.style.cssText = `
+    --accent: var(--dark-accent); 
+    --top: var(--dark-top);
+    --card: var(--dark-card);
+    `;
   }
 } else {
   document.body.classList.add("light");
+  document.documentElement.style.cssText = `
+  --accent: var(--light-accent);
+  --top: var(--light-top);
+  `;
 }
 
 lightButton.onclick = () => {
   document.body.classList.replace("dark", "light");
   localStorage.setItem("theme", "light");
-  document.documentElement.style.cssText = `--accent: var(--light-accent);`;
+  // document.documentElement.style.cssText = `
+  // --accent: var(--light-accent);
+  // --top: var(--light-top);
+  // `;
 
 }
 darkButton.onclick = () => {
   document.body.classList.replace("light", "dark");
   localStorage.setItem("theme", "dark");
-  document.documentElement.style.cssText = `--accent: var(--dark-accent);`;
+  document.documentElement.style.cssText = `
+  --accent: var(--dark-accent);
+  --top: var(--dark-top);
+  --card: var(--dark-card);
+  `;
 }
 
