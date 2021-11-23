@@ -6,11 +6,13 @@
   --light-current-lesson: #e91e63;
   --light-shadow-color: black; 
 
-  --dark-top: #D500F9;
+  /* dark purple: #6200EE */
+  /* light purple: #D500F9 */
+  --dark-top:#6200EE;
   --dark-background: rgb(18, 18, 18);
-  --dark-accent: var(--dark-top);
+  --dark-accent: #03DAC6;
   --dark-card: rgba(255, 255, 255, 0.1);
-  --dark-current-lesson: #03DAC6;
+  --dark-current-lesson: #6200EE;
   --dark-shadow-color: rgb(87, 87, 87);
 }
 
