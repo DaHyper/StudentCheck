@@ -1,5 +1,40 @@
+:root {
+  --light-top: rgb(61, 155, 181);
+  --light-background: rgb(230, 230, 230);
+  --light-accent: var(--light-top);
+  --light-card: #e0e0e0;
+  --light-current-lesson: #e91e63;
+  --light-shadow-color: black; 
+
+  --dark-top: #D500F9;
+  --dark-background: rgb(18, 18, 18);
+  --dark-accent: var(--dark-top);
+  --dark-card: rgba(255, 255, 255, 0.1);
+  --dark-current-lesson: #03DAC6;
+  --dark-shadow-color: rgb(87, 87, 87);
+}
+
+.light {
+  background: var(--light-background) !important;
+  --top: var(--light-top);
+  --accent: var(--light-accent);
+  --card: var(--light-card);
+  --current-lesson: var(--light-current-lesson);
+  --shadow-color: var(--light-shadow-color);
+}
+
+.dark {
+  background: var(--dark-background) !important;
+  color: white;
+  --top: var(--dark-top);
+  --accent: var(--dark-accent);
+  --card: var(--dark-card);
+  --current-lesson: var(--dark-current-lesson);
+  --shadow-color: var(--dark-shadow-color);
+}
+
 body {
-  background: rgb(230, 230, 230) !important;
+  transition: background 500ms ease-in-out, color 1000ms ease-in-out;
 }
 
 .title {
@@ -36,10 +71,10 @@ h2 {
 }
 
 #top {
+  background: var(--top);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background: rgb(189, 224, 235);
   height: 100px;
 }
 
@@ -108,7 +143,6 @@ h2 {
   margin-top: 20px;
   width: 100%;
   border: 3px solid rgb(116, 114, 114);
-  background: rgb(218, 217, 217);
   font-size: 20px;
 }
 
@@ -122,8 +156,8 @@ h2 {
   text-align: center;
 }
 
-.teacher, .grade, .meeting-day, .assignment {
-  color: rgb(61, 155, 181);
+.accent {
+  color: var(--accent);
 }
 
 .grade-bar > .lesson-name {
@@ -156,14 +190,6 @@ h2 {
   margin: 5px;
 }
 
-.lowered {
-  color: rgb(233, 133, 115) !important;
-}
-
-.higher {
-  color: rgb(110, 227, 110) !important;
-}
-
 #daily-schedule {
   margin-right: 20px;
   width: 30%;
@@ -173,12 +199,16 @@ h2 {
   min-height: 50px;
   text-align: center;
   border: 0.5px solid black;
-  background: rgb(218, 217, 217);
+}
+
+.card {
+  background: var(--card) !important;
 }
 
 .current-lesson {
-  box-shadow: 3px 3px black;
-  background: rgb(206, 92, 92);
+  box-shadow: 3px 3px var(--shadow-color);
+  background: var(--current-lesson);
+  color: black;
 }
 
 .current-lesson > .meeting-day {
@@ -188,5 +218,4 @@ h2 {
 .schedule-lesson-name {
   display: block;
 }
-
 
