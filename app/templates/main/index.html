@@ -24,6 +24,10 @@
       <h1 id="welcome">{{ username }}</h1>
       {# <a href="#">Assignments</a>
       <a href="#">Grades</a> #}
+      <div id="themes">
+        <button id="dark-btn" class="btn btn-dark" style="margin-right: 10px;">Dark</button>
+        <button id="light-btn" class="btn btn-light">Light</button>
+      </div>
       <div id="notifications">
         <button
           onclick="toggleDivClass('notification-list')"
@@ -63,8 +67,6 @@
               {% endfor %}
               <hr />
             {% endfor %}
-            <button id="dark-btn" class="btn btn-dark">Dark</button>
-            <button id="light-btn" class="btn btn-light">Light</button>
           </div>
         
         </div>
