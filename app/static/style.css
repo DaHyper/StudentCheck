@@ -78,23 +78,13 @@ h2 {
   height: 100px;
 }
 
-#top > a {
-  height: 25px;
-  margin-top: 10px;
-  text-decoration: none;
-  transition-property: all;
-  transition-duration: 125ms;
-  color: rgb(85, 84, 84);
-}
-
-#top > a:hover {
-  text-decoration: underline;
-  color: rgb(162, 162, 162);
-}
-
 #welcome {
   margin-top: 10px;
   margin-left: 30px;
+}
+
+#themes {
+  margin-top: 20px;
 }
 
 #notifications {
