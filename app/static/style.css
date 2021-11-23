@@ -14,8 +14,6 @@
   --card: var(--light-card);
 }
 
-
-
 .light {
   background: var(--light-background) !important;
   --top: var(--light-top);
@@ -141,7 +139,6 @@ h2 {
   margin-top: 20px;
   width: 100%;
   border: 3px solid rgb(116, 114, 114);
-  background: var(--card);
   font-size: 20px;
 }
 
@@ -153,14 +150,6 @@ h2 {
 .grade-bar {
   margin-top: 15px;
   text-align: center;
-}
-
-.accent-light {
-  color: var(--light-accent);
-}
-
-.accent-dark {
-  color: var(--dark-accent);
 }
 
 .accent {
@@ -214,8 +203,6 @@ h2 {
   min-height: 50px;
   text-align: center;
   border: 0.5px solid black;
-  background: var(--card);
-  /* background: rgb(218, 217, 217); */
 }
 
 .current-lesson {
@@ -231,3 +218,6 @@ h2 {
   display: block;
 }
 
+.card {
+  background: var(--card) !important;
+}
