@@ -19,7 +19,7 @@
     <title>Dashboard</title>
   </head>
 
-  <body>
+  <body class="light">
     <div id="top">
       <h1 id="welcome">{{ username }}</h1>
       {# <a href="#">Assignments</a>
@@ -56,13 +56,15 @@
               <p class="important">{{ date }}</p>
               {% for a in next_week[date] %}
                 {% if a == tommorow %}
-                  <p class="assignment updated-name">{{ a }}</p>
+                  <p class="accent assignment updated-name">{{ a }}</p>
                 {% else %}
-                  <p class="assignment">{{ a }}</p>
+                  <p class="accent assignment">{{ a }}</p>
                 {% endif %}
               {% endfor %}
               <hr />
             {% endfor %}
+            <button id="dark-btn" class="btn btn-dark">Dark</button>
+            <button id="light-btn" class="btn btn-light">Light</button>
           </div>
         
         </div>
@@ -73,15 +75,17 @@
               <div class="lesson-name-bar">
                 <p class="lesson-name">
                   <span class="important">{{ course['@Title'] }}</span>
-                  <span class="teacher">{{ course['@Staff'] }}</span>
+                  <span class="teacher accent">{{ course['@Staff'] }}</span>
                 </p>
               </div>
               <div class="grade-bar">
                 <p class="lesson-name">
                   Grade:
-                  <span class="important grade"
+                  <span class="important grade accent"
                     >
                     {{ course['Marks']['Mark'][0]['@CalculatedScoreString'] }}
+                    <br>
+                    {{ course['Marks']['Mark'][0]["@CalculatedScoreRaw"] }}%
                     </span
                   >
                   max possible score {{ prediction[course["@Title"]]["max"] }}% 
@@ -99,10 +103,8 @@
             <p class="schedule-lesson current-lesson">
               <span class="schedule-lesson-name important">
                 {{ lesson["@ClassName"] }}
-                {{ lesson["@CourseTitle"] }}</span                
-                </span
-              >
-              <span class="meeting-day">
+                {{ lesson["@CourseTitle"] }}</span>
+              <span class="meeting-day accent">
                 {#{{ lesson["@MeetingDays"] }}#} {{ lesson["@StartTime"] }}-{{ lesson["@EndTime"] }}
               </span>
             </p>
@@ -111,12 +113,12 @@
               <span class="schedule-lesson-name important">
                 {% if today_holiday %}
                   {{ lesson["@CourseTitle"] }}</span>
-                  <span class="meeting-day">
+                  <span class="meeting-day accent">
                     Meeting Days: {{ lesson["@MeetingDays"] }}                    
                   </span>
                 {% else %}
                   {{ lesson["@ClassName"] }}</span>
-                  <span class="meeting-day">
+                  <span class="meeting-day accent">
                     {{ lesson["@StartTime"] }}-{{ lesson["@EndTime"] }}
                   </span>
                 {% endif %}

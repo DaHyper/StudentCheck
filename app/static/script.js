@@ -9,5 +9,33 @@ function toggleDivClass(id) {
 
 let important = document.getElementsByClassName("updated-name");
 for (let i = 0; i < important.length; i++) {
-  document.getElementById("notification-list").innerHTML += "<hr>" + important[i].textContent
+  document.getElementById("notification-list").innerHTML += "<hr>" + important[i].textContent;
 }
+
+// chaning themes
+
+const lightButton = document.getElementById("light-btn");
+const darkButton = document.getElementById("dark-btn");
+
+const theme = localStorage.getItem("theme");
+if (theme) {
+  document.body.classList.add(theme);
+  if (theme == "dark") {
+    document.documentElement.style.cssText = `--accent: var(--dark-accent);`;
+  }
+} else {
+  document.body.classList.add("light");
+}
+
+lightButton.onclick = () => {
+  document.body.classList.replace("dark", "light");
+  localStorage.setItem("theme", "light");
+  document.documentElement.style.cssText = `--accent: var(--light-accent);`;
+
+}
+darkButton.onclick = () => {
+  document.body.classList.replace("light", "dark");
+  localStorage.setItem("theme", "dark");
+  document.documentElement.style.cssText = `--accent: var(--dark-accent);`;
+}
+

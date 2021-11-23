@@ -1,5 +1,28 @@
+:root {
+  --light-top: rgb(189, 224, 235);;
+  --light-background: rgb(230, 230, 230);
+  --light-accent: rgb(61, 155, 181);
+
+  --dark-top: rgb(65, 241, 118);
+  --dark-background: rgb(110, 110, 110);
+  --dark-accent: rgb(49, 175, 56);
+
+  --top: var(--light-top);
+  --accent: var(--light-accent);
+}
+
+
+
+.light {
+  background: var(--light-background) !important;  
+}
+
+.dark {
+  background: var(--dark-background) !important;
+}
+
 body {
-  background: rgb(230, 230, 230) !important;
+  transition: background 500ms ease-in-out, color 1000ms ease-in-out;
 }
 
 .title {
@@ -36,10 +59,10 @@ h2 {
 }
 
 #top {
+  background: var(--light-top);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background: rgb(189, 224, 235);
   height: 100px;
 }
 
@@ -122,8 +145,16 @@ h2 {
   text-align: center;
 }
 
-.teacher, .grade, .meeting-day, .assignment {
-  color: rgb(61, 155, 181);
+.accent-light {
+  color: var(--light-accent);
+}
+
+.accent-dark {
+  color: var(--dark-accent);
+}
+
+.accent {
+  color: var(--accent);
 }
 
 .grade-bar > .lesson-name {
@@ -156,13 +187,13 @@ h2 {
   margin: 5px;
 }
 
-.lowered {
+/* .lowered {
   color: rgb(233, 133, 115) !important;
 }
 
 .higher {
   color: rgb(110, 227, 110) !important;
-}
+} */
 
 #daily-schedule {
   margin-right: 20px;
