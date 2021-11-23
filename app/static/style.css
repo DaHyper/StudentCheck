@@ -4,17 +4,14 @@
   --light-accent: var(--light-top);
   --light-card: #e0e0e0;
   --light-current-lesson: #e91e63;
+  --light-shadow-color: black; 
 
   --dark-top: #D500F9;
   --dark-background: rgb(18, 18, 18);
   --dark-accent: var(--dark-top);
   --dark-card: rgba(255, 255, 255, 0.1);
   --dark-current-lesson: #03DAC6;
-
-  --top: var(--light-top);
-  --accent: var(--light-accent);
-  --card: var(--light-card);
-  --current-lesson: var(--dark-current-lesson);
+  --dark-shadow-color: rgb(87, 87, 87);
 }
 
 .light {
@@ -23,6 +20,7 @@
   --accent: var(--light-accent);
   --card: var(--light-card);
   --current-lesson: var(--light-current-lesson);
+  --shadow-color: var(--light-shadow-color);
 }
 
 .dark {
@@ -32,6 +30,7 @@
   --accent: var(--dark-accent);
   --card: var(--dark-card);
   --current-lesson: var(--dark-current-lesson);
+  --shadow-color: var(--dark-shadow-color);
 }
 
 body {
@@ -207,7 +206,7 @@ h2 {
 }
 
 .current-lesson {
-  box-shadow: 3px 3px black;
+  box-shadow: 3px 3px var(--shadow-color);
   background: var(--current-lesson);
   color: black;
 }
