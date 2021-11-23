@@ -64,14 +64,17 @@ def get_assignments(user: StudentVue):
 
     for course in courses:
         course_name = course["@Title"]
-        try:
-            course_assignments = []
-            for a in course["Marks"]['Mark']:
-                course_assignments.append(a["Assignments"]["Assignment"])
-            assignments[course_name] = course_assignments
-        except KeyError:
-            assignments[course_name] = "N/A"
-
+        
+        course_assignments = []
+        for a in course["Marks"]['Mark']:
+          try:
+            course_assignments.append(a["Assignments"]["Assignment"])
+          except KeyError:
+            pass
+        if course_assignments != []:
+          assignments[course_name] = course_assignments
+        else:
+          assignments[course_name] = "N/A"
     return assignments
 
 
@@ -82,7 +85,8 @@ def get_weighted_assignments(user: StudentVue):
         lesson_grades_assignments = []
         if assignments[lesson_name] != "N/A":
             for a in assignments[lesson_name]:
-                    if "not for grading" not in a["@Notes"].lower():
+                    print(lesson_name)
+                    if "not for grading" not in a[0]["@Notes"].lower():
                         lesson_grades_assignments.append(a)
         else:
             graded_assignments[lesson_name] = "N/A"
