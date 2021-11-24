@@ -105,6 +105,7 @@ def grade_prediction(user: StudentVue):
         min_score = 0
         if assignments[key] != "N/A":
             for a in assignments[key]:
+                t = a
                 a = a["@Points"]
                 # this is if it is not graded
                 if '/' not in a:
@@ -117,10 +118,10 @@ def grade_prediction(user: StudentVue):
                 earned_score += earned_points
                 max_score += total_points
                 min_score += min_points
-                try:
-                  max_percent = round(earned_score / max_score * 100)
-                  min_percent = round(min_score / max_score * 100)
-                except ZeroDivisionError:
+                if max_score != 0 or min_score != 0:
+                    max_percent = round(earned_score / max_score * 100)
+                    min_percent = round(min_score / max_score * 100)
+                else:
                   max_percent = min_percent = 0
                 percent_dict = {"max": max_percent, "min": min_percent}
                 full_scores[key] = percent_dict
