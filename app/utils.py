@@ -43,6 +43,8 @@ def get_upcoming_assignments(user: StudentVue):
         for a in assignments:
             if a["@Date"] == next_date.strftime('%m/%d/%Y'):
                 dates_dict[next_date].append(a["@Title"])
+        if dates_dict[next_date] == []:
+          del dates_dict[next_date]
     return dates_dict
 
 
