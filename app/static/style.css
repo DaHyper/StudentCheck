@@ -117,16 +117,6 @@ h2 {
   margin-left: 30px;
 }
 
-@media screen and (max-width: 755px) {
-  #main {
-    margin-left: 0px;
-    margin-right: 0px;
-  }
-  #calendar {
-    margin-left: 0px;
-  }
-}
-
 #assignment-list {
   min-height: 100px;
   text-align: center;
@@ -146,13 +136,6 @@ h2 {
   align-items: center;
   flex-flow: row wrap;
   width: 100%;
-}
-
-@media screen and (max-width: 755px) {
-  #grades {
-    width: 80%;
-  }
-  
 }
 
 .lesson {
@@ -234,5 +217,19 @@ h2 {
 
 .schedule-lesson-name {
   display: block;
+}
+
+
+@media screen and (max-width: 755px) {
+  #main {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  #calendar {
+    margin-left: 0px;
+  }
+  #grades {
+    width: 80%;
+  }
 }
 
