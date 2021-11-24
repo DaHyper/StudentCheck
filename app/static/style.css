@@ -67,6 +67,11 @@ body {
   margin-top: 20px;
 }
 
+#csv-link {
+  color: rgb(194, 194, 194);
+  text-decoration: none;
+}
+
 /* starting main */
 
 #all {
