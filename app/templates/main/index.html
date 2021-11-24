@@ -20,122 +20,124 @@
   </head>
 
   <body>
-    <div id="top">
-      {% if current_lesson is none %}
-        <h1 id="welcome">{{ username }}</h1>
-      {% else %}
-        <h1 id="welcome" class="card">{{ current_lesson["@ClassName"] }}</h1>
-      {% endif %}      
-      {# <a href="#">Assignments</a>
-      <a href="#">Grades</a> #}
-      <div id="themes">
-        <button id="dark-btn" class="btn btn-dark" style="margin-right: 10px;">Dark</button>
-        <button id="light-btn" class="btn btn-light">Light</button>
-      </div>
-      <div id="notifications">
-        <button
-          onclick="toggleDivClass('notification-list')"
-          id="notification-button"
-          class="bell"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            class="bi bi-bell-fill"
-            viewBox="0 0 16 16"
+    <div id="all">
+      <div id="top">
+        {% if current_lesson is none %}
+          <h1 id="welcome">{{ username }}</h1>
+        {% else %}
+          <h1 id="welcome" class="card">{{ current_lesson["@ClassName"] }}</h1>
+        {% endif %}      
+        {# <a href="#">Assignments</a>
+        <a href="#">Grades</a> #}
+        <div id="themes">
+          <button id="dark-btn" class="btn btn-dark" style="margin-right: 10px;">Dark</button>
+          <button id="light-btn" class="btn btn-light">Light</button>
+        </div>
+        <div id="notifications">
+          <button
+            onclick="toggleDivClass('notification-list')"
+            id="notification-button"
+            class="bell"
           >
-            <path
-              d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"
-            />
-          </svg>
-        </button>
-        <div id="notification-list" class="hidden">
-          <noscript>Please Enable Javascript</noscript>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-bell-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"
+              />
+            </svg>
+          </button>
+          <div id="notification-list" class="hidden">
+            <noscript>Please Enable Javascript</noscript>
+          </div>
         </div>
       </div>
-    </div>
-    <div id="main">
-      <div id="calendar" class="card">
-          <h2 style="text-align: center;">Upcoming</h2>
-          <div id="assignment-list">
-            {% for date in next_week.keys() %}
-              <p class="important">{{ days_dict[date.weekday()] }}, {{ date.strftime('%m/%d/%Y') }}</p>
-              {% for a in next_week[date] %}
-                {% if a == tommorow %}
-                  <p class="accent assignment updated-name">{{ a }}</p>
-                {% else %}
-                  <p class="accent assignment">{{ a }}</p>
-                {% endif %}
-              {% endfor %}
-              <hr />
-            {% endfor %}
-          </div>
-        
-        </div>
-        <div id="grades-holder" style="width: 50%;">
-          <h2>Grades</h2>
-          <div id="grades">
-            {% for course in courses %}
-              <div class="lesson card">
-                <div class="lesson-name-bar">
-                  <p class="lesson-name">
-                    <span class="important">{{ course['@Title'] }}</span>
-                    <span class="teacher accent">{{ course['@Staff'] }}</span>
-                  </p>
-                </div>
-                <div class="grade-bar">
-                  <p class="lesson-name">
-                    Grade:
-                    <span class="important grade accent"
-                      >
-                      {{ course['Marks']['Mark'][0]['@CalculatedScoreString'] }}
-                      <br>
-                      {{ course['Marks']['Mark'][0]["@CalculatedScoreRaw"] }}%
-                      </span
-                    >
-                    max possible score {{ prediction[course["@Title"]]["max"] }}% 
-                    <br>
-                    min possible score {{ prediction[course["@Title"]]["min"] }}%
-                  </p>
-                </div>
-              </div>
-            {% endfor %}
-          </div>
-      </div>
-      <div id="daily-schedule">
-        <h2>Schedule</h2>
-        {% for lesson in schedule %}
-          {% if lesson == current_lesson %}
-            <p class="schedule-lesson current-lesson">
-              <span class="schedule-lesson-name important">
-                {{ lesson["@ClassName"] }}
-                {{ lesson["@CourseTitle"] }}</span>
-              <span class="meeting-day accent">
-                {#{{ lesson["@MeetingDays"] }}#} {{ lesson["@StartTime"] }}-{{ lesson["@EndTime"] }}
-              </span>
-            </p>
-          {% else %}
-              <p class="schedule-lesson card">
-                <span class="schedule-lesson-name important">
-                  {% if today_holiday %}
-                    {{ lesson["@CourseTitle"] }}</span>
-                    <span class="meeting-day accent">
-                      Meeting Days: {{ lesson["@MeetingDays"] }}                    
-                    </span>
+      <div id="main">
+        <div id="calendar" class="card">
+            <h2 style="text-align: center;">Upcoming</h2>
+            <div id="assignment-list">
+              {% for date in next_week.keys() %}
+                <p class="important">{{ days_dict[date.weekday()] }}, {{ date.strftime('%m/%d/%Y') }}</p>
+                {% for a in next_week[date] %}
+                  {% if a == tommorow %}
+                    <p class="accent assignment updated-name">{{ a }}</p>
                   {% else %}
-                    {{ lesson["@ClassName"] }}</span>
-                    <span class="meeting-day accent">
-                      {{ lesson["@StartTime"] }}-{{ lesson["@EndTime"] }}
-                    </span>
+                    <p class="accent assignment">{{ a }}</p>
                   {% endif %}
-                  
-                <span class="meeting-day">
+                {% endfor %}
+                <hr />
+              {% endfor %}
+            </div>
+          
+          </div>
+          <div id="grades-holder">
+            <h2>Grades</h2>
+            <div id="grades">
+              {% for course in courses %}
+                <div class="lesson card">
+                  <div class="lesson-name-bar">
+                    <p class="lesson-name">
+                      <span class="important">{{ course['@Title'] }}</span>
+                      <span class="teacher accent">{{ course['@Staff'] }}</span>
+                    </p>
+                  </div>
+                  <div class="grade-bar">
+                    <p class="lesson-name">
+                      Grade:
+                      <span class="important grade accent"
+                        >
+                        {{ course['Marks']['Mark'][0]['@CalculatedScoreString'] }}
+                        <br>
+                        {{ course['Marks']['Mark'][0]["@CalculatedScoreRaw"] }}%
+                        </span
+                      >
+                      max possible score: {{ prediction[course["@Title"]]["max"] }}% 
+                      <br>
+                      min possible score: {{ prediction[course["@Title"]]["min"] }}%
+                    </p>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+        </div>
+        <div id="daily-schedule">
+          <h2>Schedule</h2>
+          {% for lesson in schedule %}
+            {% if lesson == current_lesson %}
+              <p class="schedule-lesson current-lesson">
+                <span class="schedule-lesson-name important">
+                  {{ lesson["@ClassName"] }}
+                  {{ lesson["@CourseTitle"] }}</span>
+                <span class="meeting-day accent">
+                  {{ lesson["@StartTime"] }}-{{ lesson["@EndTime"] }}
                 </span>
-            </p>
-          {% endif %}
-        {% endfor %}
+              </p>
+            {% else %}
+                <p class="schedule-lesson card">
+                  <span class="schedule-lesson-name important">
+                    {% if today_holiday %}
+                      {{ lesson["@CourseTitle"] }}</span>
+                      <span class="meeting-day accent">
+                        Meeting Days: {{ lesson["@MeetingDays"] }}                    
+                      </span>
+                    {% else %}
+                      {{ lesson["@ClassName"] }}</span>
+                      <span class="meeting-day accent">
+                        {{ lesson["@StartTime"] }}-{{ lesson["@EndTime"] }}
+                      </span>
+                    {% endif %}
+                    
+                  <span class="meeting-day">
+                  </span>
+              </p>
+            {% endif %}
+          {% endfor %}
+        </div>
       </div>
     </div>
   </body>

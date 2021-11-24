@@ -69,6 +69,10 @@ body {
 
 /* starting main */
 
+#all {
+  width: fit-content;
+}
+
 h2 {
   text-align: center;
 }
@@ -113,7 +117,11 @@ h2 {
   margin-left: 30px;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 755px) {
+  #main {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
   #calendar {
     margin-left: 0px;
   }
@@ -129,15 +137,22 @@ h2 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 50%;
 }
 
 #grades {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* 300px */
-  width: 100%;
   flex-flow: row wrap;
+  width: 100%;
+}
+
+@media screen and (max-width: 755px) {
+  #grades {
+    width: 80%;
+  }
+  
 }
 
 .lesson {
