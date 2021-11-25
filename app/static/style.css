@@ -67,9 +67,15 @@ body {
   margin-top: 20px;
 }
 
-#csv-link {
+.link {
+  margin-right: 40px;
   color: rgb(194, 194, 194);
   text-decoration: none;
+  height: fit-content;
+}
+
+.link:hover {
+  color: rgb(194, 194, 194);
 }
 
 /* starting main */
@@ -95,7 +101,7 @@ h2 {
   margin-left: 30px;
 }
 
-#themes {
+#themes, #logout {
   margin-top: 20px;
 }
 
