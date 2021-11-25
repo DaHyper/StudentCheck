@@ -15,23 +15,28 @@ for (let i = 0; i < important.length; i++) {
 
 // changing themes
 
-const lightButton = document.getElementById("light-btn");
-const darkButton = document.getElementById("dark-btn");
+const themeButton = document.getElementById("theme-btn")
 
-const theme = localStorage.getItem("theme");
+let theme = localStorage.getItem("theme");
 if (theme) {
   document.body.classList.add(theme);
+  document.getElementById("theme-btn").classList.add("btn-" + theme);
 } else {
   document.body.classList.add("light");
+  document.getElementById("theme-btn").classList.add("btn-light");
+
 }
 
-lightButton.onclick = () => {
-  document.body.classList.replace("dark", "light");
-  localStorage.setItem("theme", "light");
-}
-
-darkButton.onclick = () => {
-  document.body.classList.replace("light", "dark");
-  localStorage.setItem("theme", "dark");
-}
-
+themeButton.onclick = () => {
+  if (theme === "light") {
+    
+    themeButton.classList.replace("btn-light", "btn-dark");
+    document.body.classList.replace("light", "dark");
+    localStorage.setItem("theme", "dark");
+  } else {
+    themeButton.classList.replace("btn-dark", "btn-light");
+    document.body.classList.replace("dark", "light");
+    localStorage.setItem("theme", "light");
+  }
+  theme = localStorage.getItem("theme");
+ }
