@@ -1,4 +1,3 @@
-from re import L
 from studentvue import StudentVue
 
 import datetime
