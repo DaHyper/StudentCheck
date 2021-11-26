@@ -28,6 +28,7 @@ function setThemeButtonValue(light) {
 let theme = localStorage.getItem("theme");
 
 if (theme) {
+  document.body.classList.remove("light");
   document.body.classList.add(theme);
   document.getElementById("theme-btn").classList.add("btn-" + theme);
   if (theme === "light") {
@@ -37,7 +38,6 @@ if (theme) {
   }
 
 } else {
-  document.body.classList.add("light");
   document.getElementById("theme-btn").classList.add("btn-light");
   setThemeButtonValue(true);
 }

@@ -1,7 +1,9 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from studentvue import StudentVue
 
-from .utils import get_courses, get_upcoming_assignments, get_valid_schedule, grade_prediction, get_current_lesson, is_holiday
+from .utils import (
+    get_courses, get_upcoming_assignments, get_valid_schedule, grade_prediction, 
+    get_current_lesson, is_holiday, get_assignments)
 
 import datetime
 
@@ -56,8 +58,8 @@ def index():
 
         current_lesson = get_current_lesson(user)
         today_holiday = is_holiday(user)
-        
 
+        # assignments = get_assignments(user)       
     except KeyError:
      return redirect(url_for("auth.login"))
 

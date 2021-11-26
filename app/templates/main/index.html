@@ -19,7 +19,7 @@
     <title>StudentCheck - Dashboard</title>
   </head>
 
-  <body>
+  <body class="light">
     <div id="all">
       <div id="top">
         {% if current_lesson is none %}
@@ -30,7 +30,7 @@
         <div id="themes">
           <button id="theme-btn" class="btn">Change Theme</button>
         </div>
-        <div id="notifications">
+         <div id="notifications">
           <button
             onclick="toggleDivClass('notification-list')"
             id="notification-button"
@@ -56,9 +56,9 @@
         <a id="logout" class='link' href="{{ url_for('auth.login') }}">Logout</a>
       </div>
       <div id="main">
-        <div id="calendar" class="card">
+        <div id="calendar">
             <h2 style="text-align: center;">Upcoming</h2>
-            <div id="assignment-list">
+            <div id="assignment-list" class="card">
               {% for date in next_week.keys() %}
                 <p class="important">{{ days_dict[date.weekday()] }}, {{ date.strftime('%m/%d/%Y') }}</p>
                 {% for a in next_week[date] %}
@@ -71,7 +71,6 @@
                 <hr />
               {% endfor %}
             </div>
-          
           </div>
           <div id="grades-holder">
             <h2>Grades</h2>
@@ -99,7 +98,7 @@
                       min possible score: {{ prediction[course["@Title"]]["min"] }}%
                     </p>
                   </div>
-                </div>
+                </div> 
               {% endfor %}
             </div>
         </div>
@@ -138,5 +137,52 @@
         </div>
       </div>
     </div>
+    </div>
   </body>
 </html>
+
+<!-- <div id="class-assignments">
+              <div id="weighted-assignments">
+                <h2>Weighted</h2>
+                <div class="card">
+                  <table id="weighted-assignments-table" class="assignments-table">
+                    <thead>
+                      <td>
+                        Assignment Name
+                      </td>
+                      
+                      <td>Type</td>
+                      <td>Points</td>
+                      <td>Notes</td>
+                      <td>Score</td>
+                    </thead>
+                    <tr>
+                      <td>
+                        History Hinduism/Buddism Quiz
+                      </td>
+                      <td>Minor Grade</td>
+                      <td>20</td>
+                      <td></td>
+                      <td>Not Graded</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        History Hinduism/Buddism Quiz
+                      </td>
+                      <td>Minor Grade</td>
+                      <td>20</td>
+                      <td></td>
+                      <td>Not Graded</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        History Hinduism/Buddism Quiz
+                      </td>
+                      <td>Minor Grade</td>
+                      <td>20</td>
+                      <td></td>
+                      <td>Not Graded</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>  -->
