@@ -3,7 +3,7 @@ from studentvue import StudentVue
 
 from .utils import (
     get_courses, get_upcoming_assignments, get_valid_schedule, grade_prediction, 
-    get_current_lesson, is_holiday, get_assignments)
+    get_current_lesson, is_holiday, get_assignments, get_courses_with_assignments)
 
 import datetime
 
@@ -59,7 +59,10 @@ def index():
         current_lesson = get_current_lesson(user)
         today_holiday = is_holiday(user)
 
-        # assignments = get_assignments(user)       
+        assignments = get_assignments(user)
+
+        courses_with_assignments = get_courses_with_assignments(user)
+
     except KeyError:
      return redirect(url_for("auth.login"))
 
@@ -73,4 +76,6 @@ def index():
                            prediction=prediction,
                            tommorow=tommorow,
                            current_lesson=current_lesson,
-                           today_holiday=today_holiday)
+                           today_holiday=today_holiday,
+                           assignments=assignments,
+                           courses_with_assignments=courses_with_assignments)

@@ -62,20 +62,34 @@ themeButton.onclick = () => {
 // handling modal
 
 const modal = document.getElementById("modal");
-const modalBtn = document.getElementById('modal-btn');
-const span = document.getElementsByClassName("close")[0];
+const closeBtn = document.getElementsByClassName("close")[0];
+const modalDivs = document.getElementsByClassName("modal-div");
 
-modalBtn.onclick = () => {
+
+const modalDisplay = (pressed) => {
   modal.style.display = "block";
+  const periodName = pressed.id.slice(-1);
+  document.getElementById(`modal-${periodName}`).classList.remove("hidden");
 }
 
-span.onclick = () => {
+
+closeBtn.onclick = () => {
   modal.style.display = "none";
+  for (let i = 0; i < modalDivs.length; i++) {
+    if (!modalDivs[i].classList.contains("hidden")) {
+      modalDivs[i].classList.add("hidden");
+    }
+  }
 }
 
 window.onclick = (event) => {
   if (event.target === modal) {
-    modal.style.display = "none";  
+    modal.style.display = "none";
+    for (let i = 0; i < modalDivs.length; i++) {
+      if (!modalDivs[i].classList.contains("hidden")) {
+        modalDivs[i].classList.add("hidden");
+      }
+    }
   }
 }
 

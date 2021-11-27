@@ -78,6 +78,13 @@ def get_assignments(user: StudentVue):
           assignments[course_name] = "N/A"
     return assignments
 
+def get_courses_with_assignments(user: StudentVue):
+  assignments = get_assignments(user)
+  courses_with_assignments = {}
+  for key in assignments:
+    if assignments[key] != "N/A":
+      courses_with_assignments[key] = assignments[key]
+  return courses_with_assignments
 
 def get_weighted_assignments(user: StudentVue):
     assignments = get_assignments(user)
