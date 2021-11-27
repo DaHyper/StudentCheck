@@ -26,6 +26,7 @@
   --card: var(--light-card);
   --current-lesson: var(--light-current-lesson);
   --shadow-color: var(--light-shadow-color);
+  --table-border-color: rgb(194, 194, 194);
 }
 
 .dark {
@@ -36,6 +37,7 @@
   --card: var(--dark-card);
   --current-lesson: var(--dark-current-lesson);
   --shadow-color: var(--dark-shadow-color);
+  --table-border-color: var(--dark-card);
 }
 
 body {
@@ -246,5 +248,81 @@ h2 {
   #grades {
     width: 80%;
   }
+}
+
+
+
+
+/* modals */
+
+.assignments-table {
+  width: 100%;
+}
+
+td {
+  border: 0.5px solid var(--table-border-color) !important;
+}
+
+thead {
+  font-weight: 650;
+}
+
+tr:nth-child(2n + 1) {
+  /* make this pink a variable later */
+  color: #F06292;
+}
+
+tr:nth-child(2n + 2) {
+  color: var(--accent);
+}
+
+
+/* modal */
+
+/* The Modal (background) */
+.modal {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.815); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: var(--card) !important;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  color: var(--accent);
+  position: relative;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
+}
+
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 

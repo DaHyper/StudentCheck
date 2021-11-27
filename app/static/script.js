@@ -58,3 +58,26 @@ themeButton.onclick = () => {
   }
   theme = localStorage.getItem("theme");
 }
+
+// handling modal
+
+const modal = document.getElementById("modal");
+const modalBtn = document.getElementById('modal-btn');
+const span = document.getElementsByClassName("close")[0];
+
+modalBtn.onclick = () => {
+  modal.style.display = "block";
+}
+
+span.onclick = () => {
+  modal.style.display = "none";
+}
+
+window.onclick = (event) => {
+  if (event.target === modal) {
+    modal.style.display = "none";  
+  }
+}
+
+
+
