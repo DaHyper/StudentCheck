@@ -31,10 +31,13 @@ def index():
         domain_name = request.form.get("domain-name")
         domain = schools[domain_name]
         try:
-            user = StudentVue(username, password, domain)
-            user.get_gradebook()["Gradebook"]
+          user = StudentVue(username, password, domain)
+          user.get_gradebook()["Gradebook"]
         except:
-            flash("Incorrect Credentials")
+            if domain == "sisstudent.fcps.edu":
+              flash("Sorry, Fairfax is not working")
+            else:
+              flash("Incorrect Credentials")
             return redirect(url_for("auth.login"))
 
         # main code
