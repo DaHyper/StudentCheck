@@ -98,7 +98,7 @@
                       min possible score: {{ prediction[course["@Title"]]["min"] }}%
                     </p>
                   </div>
-                  <button onclick="modalDisplay(this)" id="assignments-btn-{{ loop.index }}" class="btn btn-primary">See Assignments</button>
+                  <button onclick="modalDisplay(this)" id="assignments-btn-{{ loop.index }}" class="btn btn-secondary">See Assignments</button>
                 </div> 
               {% endfor %}
             </div>
@@ -140,19 +140,7 @@
     </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- starting modal -->
+    <!-- starting assignments modal -->
     <div id="modal" class="modal">
     
       <div class="modal-content">
@@ -192,75 +180,5 @@
           {% endfor %}
       </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </div>
   </body>
 </html>
-
-
-
-<!-- <button id="modal-btn" class="btn btn-primary">Open Modal</button>
-
-    <div id="modal" class="modal">
-    
-      <div class="modal-content">
-        <span class="close">&times;</span>
-          <div class="card">
-              <table id="assignments-table" class="assignments-table">
-                <thead>
-                  <td>
-                    Assignment Name
-                  </td>
-                  <td>Type</td>
-                  <td>Points</td>
-                  <td>Notes</td>
-                  <td>Score</td>
-                </thead>
-                <tr>
-                  <td>
-                    History Hinduism/Buddism Quiz
-                  </td>
-                  <td>Minor Grade</td>
-                  <td>20</td>
-                  <td></td>
-                  <td>Not Graded</td>
-                </tr>
-                <tr>
-                  <td>
-                    History Hinduism/Buddism Quiz
-                  </td>
-                  <td>Minor Grade</td>
-                  <td>20</td>
-                  <td></td>
-                  <td>Not Graded</td>
-                </tr>
-                <tr>
-                  <td>
-                    History Hinduism/Buddism Quiz
-                  </td>
-                  <td>Minor Grade</td>
-                  <td>20</td>
-                  <td></td>
-                  <td>Not Graded</td>
-                </tr>
-              </table>
-          </div>
-      </div>
-    </div> -->
