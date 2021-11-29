@@ -1,2 +1,2 @@
 language = "python3"
-run = "export FLASK_APP=app; export FLASK_ENV=development; flask run -h '0.0.0.0' -p 2000"
+run = "export FLASK_APP=app; flask run -h '0.0.0.0' -p 2000"

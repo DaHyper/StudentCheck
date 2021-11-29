@@ -57,14 +57,12 @@ def index():
         }
 
         schedule = get_valid_schedule(user)
-
         prediction = grade_prediction(user)
 
         current_lesson = get_current_lesson(user)
         today_holiday = is_holiday(user)
 
         assignments = get_assignments(user)
-
         courses_with_assignments = get_courses_with_assignments(user)
 
     except KeyError:
