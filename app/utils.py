@@ -14,21 +14,12 @@ def get_current_day():
 # this gets the assignments for the next week
 
 def get_days_next_week():
-
-    next_week_num = (datetime.date.today() +
-                     datetime.timedelta(weeks=1)).strftime("%V")
-    WEEK = int(next_week_num) - 1
-    today = datetime.date.today()
-    current_year = today.year
-    startdate = time.asctime(time.strptime(
-        f'{current_year} {WEEK} 0', '%Y %W %w'))
-    startdate = datetime.datetime.strptime(startdate, '%a %b %d %H:%M:%S %Y')
-    dates = [today]
-    for i in range(0, 6):
-        day = startdate + datetime.timedelta(days=i)
-        dates.append(day)
-    return dates
-
+  today = datetime.date.today()
+  days = [today]
+  for i in range(1, 7):
+    day = today + datetime.timedelta(days=i)
+    days.append(day)
+  return days
 
 def get_upcoming_assignments(user: StudentVue):
 
@@ -113,7 +104,6 @@ def grade_prediction(user: StudentVue):
         min_score = 0
         if assignments[key] != "N/A":
             for a in assignments[key]:
-                t = a
                 a = a["@Points"]
                 # this is if it is not graded
                 if '/' not in a:
@@ -161,7 +151,6 @@ def is_holiday(user: StudentVue):
     return valid_schedule == user.get_schedule()["StudentClassSchedule"]["ClassLists"]["ClassListing"]
         
 
-# finish when school starts again because I can't get it right now
 def get_current_lesson(user: StudentVue):
     if not is_holiday(user):
         schedule = get_valid_schedule(user)

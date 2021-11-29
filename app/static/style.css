@@ -270,7 +270,6 @@ thead {
 }
 
 tr:nth-child(2n + 1) {
-  /* make this pink a variable later */
   color: var(--tr-second-color);
 }
 

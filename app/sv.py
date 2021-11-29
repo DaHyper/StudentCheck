@@ -3,7 +3,8 @@ from studentvue import StudentVue
 
 from .utils import (
     get_courses, get_upcoming_assignments, get_valid_schedule, grade_prediction, 
-    get_current_lesson, is_holiday, get_assignments, get_courses_with_assignments)
+    get_current_lesson, is_holiday, get_assignments, get_courses_with_assignments,
+    get_days_next_week)
 
 import datetime
 
