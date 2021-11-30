@@ -92,6 +92,3 @@ window.onclick = (event) => {
     }
   }
 }
-
-
-

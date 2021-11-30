@@ -199,7 +199,7 @@ h2 {
 #notification-list {
   margin-top: 10px;
   min-height: 100px;
-  color: rgba(155, 155, 155, 0.699);
+  color: var(--accent);
   background: rgba(184, 184, 184, 0.2);
   border: 0.3px solid lightgray;
   width: 100px;

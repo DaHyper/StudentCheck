@@ -24,6 +24,7 @@ def index():
     prediction = None
 
     tommorow = (datetime.date.today() + datetime.timedelta(days=1))
+    
     try:
         df = pd.read_csv("app/schools.csv")
         schools = dict(zip(df["SchoolName"], df["DomainName"]))

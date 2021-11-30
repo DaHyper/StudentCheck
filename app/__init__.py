@@ -1,13 +1,15 @@
+import os
 from flask import Flask
 
 from . import auth, sv
 
 def create_app(test_config=None):
     # create and configure the app
+    secret_key = os.environ['SECRET_KEY']
     app = Flask(__name__, instance_relative_config=True)
     app.debug = False
     app.config.from_mapping(
-        SECRET_KEY='dev',
+        SECRET_KEY=secret_key,
         debug=False
     )
 
