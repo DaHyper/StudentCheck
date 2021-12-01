@@ -7,12 +7,6 @@ function toggleDivClass(id) {
   }
 }
 
-// getting notifications
-let important = document.getElementsByClassName("updated-name");
-for (let i = 0; i < important.length; i++) {
-  document.getElementById("notification-list").innerHTML += "<hr>" + important[i].textContent;
-}
-
 // changing themes
 
 const themeButton = document.getElementById("theme-btn");

@@ -117,11 +117,6 @@ h2 {
   width: 100px;
 }
 
-.bell {
-  background: inherit;
-  border: none;
-}
-
 #main {
   margin-top: 20px;
   margin-left: 30px;
@@ -194,19 +189,6 @@ h2 {
 
 .hidden {
   display: none !important;
-}
-
-#notification-list {
-  margin-top: 10px;
-  min-height: 100px;
-  color: var(--accent);
-  background: rgba(184, 184, 184, 0.2);
-  border: 0.3px solid lightgray;
-  width: 100px;
-}
-
-#notification-list > p {
-  margin: 5px;
 }
 
 #daily-schedule {
