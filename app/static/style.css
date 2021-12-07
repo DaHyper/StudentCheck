@@ -3,9 +3,12 @@
   --light-background: rgb(230, 230, 230);
   --light-accent: var(--light-top);
   --light-card: #e0e0e0;
-  --light-current-lesson: #e91e63;
+  --light-current-lesson: var(--light-top);
   --light-shadow-color: black; 
   --light-tr-second-color: #F06292;
+
+
+  /* pinkish red #e91e63 */
 
   /* dark purple: #6200EE */
   /* light purple: #D500F9 */
