@@ -66,6 +66,11 @@ def index():
         assignments = get_assignments(user)
         courses_with_assignments = get_courses_with_assignments(user)
 
+        try:
+          today_schedule_name = user.get_schedule()["StudentClassSchedule"]["TodayScheduleInfoData"]["SchoolInfos"]["SchoolInfo"]["@BellSchedName"]
+        except KeyError:
+          today_schedule_name = "holiday"
+
     except KeyError:
      return redirect(url_for("auth.login"))
 
@@ -81,4 +86,5 @@ def index():
                            current_lesson=current_lesson,
                            today_holiday=today_holiday,
                            assignments=assignments,
-                           courses_with_assignments=courses_with_assignments)
+                           courses_with_assignments=courses_with_assignments,
+                           today_schedule_name=today_schedule_name)

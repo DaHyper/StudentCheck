@@ -30,29 +30,6 @@
         <div id="themes">
           <button id="theme-btn" class="btn">Change Theme</button>
         </div>
-         {# <!-- <div id="notifications">
-          <button
-            onclick="toggleDivClass('notification-list')"
-            id="notification-button"
-            class="bell"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-bell-fill"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"
-              />
-            </svg>
-          </button>
-          <div id="notification-list" class="hidden">
-            <noscript>Please Enable Javascript</noscript>
-          </div>
-        </div> --> #}
         <a id="logout" class='link' href="{{ url_for('auth.login') }}">Logout</a>
       </div>
       <div id="main">
@@ -105,6 +82,8 @@
         </div>
         <div id="daily-schedule">
           <h2>Schedule</h2>
+          
+          <h3 id="schedule-name">{{ today_schedule_name }}</h3>
           {% for lesson in schedule %}
             {% if lesson == current_lesson %}
               <p class="schedule-lesson current-lesson">
