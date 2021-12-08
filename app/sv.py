@@ -35,6 +35,7 @@ def index():
         try:
           user = StudentVue(username, password, domain)
           user.get_gradebook()["Gradebook"]
+          
         except:
             if domain == "sisstudent.fcps.edu":
               flash("Sorry, Fairfax is not working")
@@ -42,7 +43,16 @@ def index():
               flash("Incorrect Credentials")
             return redirect(url_for("auth.login"))
 
+        # setting them to none so they cannot be extracted
+        username = None
+        password = None
+        domain_name = None
+        domain = None
+        
         # main code
+
+        
+
         courses = get_courses(user)
 
         next_week = get_upcoming_assignments(user)
