@@ -194,6 +194,10 @@ h2 {
   display: none !important;
 }
 
+.predict-score {
+  color: var(--tr-second-color);
+}
+
 #daily-schedule {
   margin-right: 20px;
   width: 30%;

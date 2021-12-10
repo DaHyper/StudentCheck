@@ -70,9 +70,9 @@
                         {{ course['Marks']['Mark'][0]["@CalculatedScoreRaw"] }}%
                         </span
                       >
-                      max possible score: {{ prediction[course["@Title"]]["max"] }}% 
+                      max possible score: <span class="predict-score"> {{ prediction[course["@Title"]]["max"] }}%</span>
                       <br>
-                      min possible score: {{ prediction[course["@Title"]]["min"] }}%
+                      min possible score: <span class="predict-score"> {{ prediction[course["@Title"]]["min"] }}%</span>
                     </p>
                   </div>
                   <button onclick="modalDisplay(this)" id="assignments-btn-{{ loop.index }}" class="btn btn-secondary">See Assignments</button>

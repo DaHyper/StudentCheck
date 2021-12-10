@@ -1,7 +1,6 @@
 from studentvue import StudentVue
 
 import datetime
-import time
 import pytz
 
 # the functions are written in the order that they are displayed on the webpage (assignments, grades, schedule)
